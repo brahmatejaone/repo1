@@ -1,0 +1,274 @@
+sudo = super user do
+whoami = display the current user [root]
+tty = Display the terminal name
+hostname = Display the terminal name
+pwd = present working directory
+echo $SHELL = current shell [/bin/bash]
+id = who is the user
+ifconfig = inet pravite IP
+
+ls
+ls -a
+ls -al
+ls -lt
+ls -lrt
+ls -1 = Display One File Per Line Using ls -1
+ls -i filename = check the I node number
+ls -d */ =  to display only directories in current dir
+lsblk = to display details about block devices
+lsblk -a = To display empty block devices as well
+cd
+cd ..
+cd ../..
+cd sample\file/ = To suppress the special character like space
+echo
+echo -e "Hi \nHow \nare \nyou" = it will print one by one
+cat file_name
+tac file_name
+man command = manual of a particular command 
+
+touch filename
+touch file-{1..10}.txt
+vi filename = creates a new file and open vi editor as well
+rm filename
+rm file-{1..10}.txt
+
+mkdir dir_name = to create one dir
+mkdir dir1 dir2 dir3 = sperate directories
+mkdir -p dir1/dir2/dir3 = inside dir
+rm -rf dir_name
+
+***Inside vi shortcuts**************
+escape mode commands:
+
+yy  = copy the entire line
+yw  = copy single word
+p   = paste
+3p  = 3 lines paste
+u   = undo
+ctrl+r = redo
+H   = beginning of the current page
+L   = last
+dd  = delete the current line
+
+****colon mode ":" ****************
+:3 = curser goes in 3rd line 
+:set number = set the line numbers automatically
+:set nonumber = delete line numbers automatically
+:/anyletter press enter press n = to searches a word in a file; n will tracks the next word
+
+SUBSTITUTION:
+
+:%s/Desktop/Laptop/g = word replace globally; s = substitution
+
+Occurrence:
+
+:%1s/unix/linux/g = word replace for entire first line only
+:%1s/unix/linux/1 = word replace in first line first word only
+
+:2,$s/unix/linux/g = 2nd line last word replace
+***********************************
+
+WORD COUNT:
+wc -l filename =  it will print the number of lines present in a file
+wc -w filename =  word count 
+wc -m filename = count of characters from a file.
+wc -c filename = number of bytes
+wc -n filename = line numbers count
+$ wc -w  file.txt | cut -c1
+7
+*******************************************************
+>> append the data
+> redirect the data
+
+more filename press spacebar = display page wise
+less filename = minimum thing same like more 
+********************************************************
+free =  free memory available or to check the ram or CPU
+free -g
+free -h
+free -b
+
+df -h = disk free in a human redable format
+df -h. = Only c drive space showing
+du -sh dirname = particular dir storage
+du -sh*
+
+difference between df and du?
+du is used more than df in day to day project as it shows the disk usage as per directory level. df is disk free space and shows at file system level
+
+What is Linux os? 
+Linux is an open-source operating system (OS). An operating system is the software that directly manages a system's hardware and resources, like CPU, memory, and storage. The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+
+components = Kernel, system library, System Utility
+
+Linux Terminal is just a mechanism to transfer information
+
+*******************************************************
+head -5 filename = first 5 lines
+head -20 filename | tail -10 = last ten lines
+ls -t | head -3 filename = first 3 files
+
+tail -3 filename = last 3 lines
+tail +25 filename = prints 25th line to last line whateverit is
+ls -lrt | tail -2 = it will print latest modified last two things
+
+Head -5 filename | tail -1 = it will print only 5th line
+
+**************************************************************
+grep wordname filename    = it will print the entire line
+grep -i word filename     = case insensitive
+grep -i -n word filename  = 1:with line numbers
+grep -c word filename     =  number of lines (4) that matches
+grep -w word filename     = will prints similar word present lines
+grep -l linux *           = display the all files and dir that contains
+grep -L -R Linux *        = It will searches the sub directories
+grep “^startingletter” file                   = It will print the starting letter lines
+grep “ending letter$” filename                = It will print the end letter lines
+grep -e “wordname” –e “another word” filename = multiple word search
+
+***************************************************************
+chmod 777 filename = all permission
+chmod o-x filename = to remove the permissions
+chmod -R 777 filena= recursive per for sub folders also
+
+cp filename destination path
+cp -R src dest/ = coping folders
+mv filename destination path 
+mv file1 file2 = rename
+
+umask: On Linux all new files are created with a default set of permissions default permission 022.
+
+****************************************************************
+SED is a powerful text stream editor. Can do insertion, deletion, search and replace
+
+Sed ‘s/Linux/Unix/g’ samplefile = only in the output change
+
+Sed -i ‘s/Linux/Unix/g’ samplefile      = inside the file word change 
+Sed ‘2 s/Linux/Unix/1’ samplefile       = 2nd line first word replace only in output 
+Sed -i ‘2 s/Linux/Unix/1’ samplefile    = changes happens permentely in the file
+Sed ‘2,6  s/Linux/Unix/g’ samplefile    = words changes from line 2 to 6
+Sed '5,$ s/anyword/replace/g' filename = from 5th line to last line
+Sed ‘5,10 s/Unix/Linux/1’ filename     = from 5th to 10th lines first occurrence
+
+Sed -n ‘5p’ sample          = it will print only 5th line
+Sed -n ‘3,6p’ filename      = it will print 3 4 5 6 lines only
+Sed -n ‘3,$’ filename       = it will prints 3 to last line; if you don’t know how many number of you have then u have to be use $ symbol.
+Sed -n ‘7d’ filename        = delete particular line
+Sed -n ‘7, $d’ filename     = delete 7 to last line
+
+sed -n ‘/10/p’ filename.txt  it will print the which is having only number 10 in the file
+*****************************************************************
+cut -d ‘ ’ –f4          = It is used to cut the file column wise
+cut -d ‘, ’ –f4 filename
+******************************************************
+awk -F “ ” ‘ {print $1}’ file.txt = it will print only first line
+awk -F " " '{print $2}' file = first two coloumn
+awk -F " " '{print $NF}' file = last line
+awk -F " " '{print $NF-1}' file = last before line
+***************************************************************
+ps -ef      = list the process running id pid
+ps -ef | grep "chrome"
+ps -aux     =  will return a detailed process list of all processes
+kill -l     = will display the all signals
+kill pid    = kills the particular process id
+kill -9 pid = when you need to shut down an unresponsive service
+****************************************************************
+5 process states in Linux
+•	RUNNING & RUNNABLE.
+•	INTERRRUPTABLE_SLEEP.
+•	UNINTERRUPTABLE_SLEEP.
+•	STOPPED.
+•	ZOMBIE.
+
+How do I find zombie processes in Linux?
+Zombie processes can be found easily with the ps command. Within the ps output there is a STAT column which will show the processes current status, a zombie process will have Z as the status.
+******************************************************************
+-type f = file
+-type d = dir
+find. -name "filename*"  = find the partiular file path
+find. -type d "filename" = find directory path
+find. -type f -mtime+10  = within 10  days modifies files and dir
+
+find. -type f -mtime-10  = 10days back
+find. -type d -mtime+10  = directory within 10 days
+
+find. -type f -mmin-10   = within 10 min
+find. -type f -mmin+10   = after 10 min
+
+find. –type f –prem 0777 = it will print the files by permissions
+********************************************************************
+Different flavours of Linux?
+ubuntu centos redhat suse hpLinux
+
+how to find a files with a particular word in linux?
+In this example, locate or find all files belongs to a group called “ftpusers” in the /home directory -> find /home -group ftpusers
+
+find . –type f –mtime -5 |wc -1
+
+Find 5 days back files and delete it
+find /dirpath -type f -mtime +30 -delete
+************************************************
+Creating links is a kind of shortcuts to access a file. Links allow more than one file name to refer to the same file.
+
+Soft link (or) symbolic link = it is a shortcut a file if we make any changes to the original file, it will get reflected to the   
+SYNTAX: ln –s desktop/desktop/hosts softlink
+        ln  [original filename] [link name]
+
+Hard link = if you delete the original file because it will works i-node of the file
+SYNTAX: ln [original filename] [link name]
+        ln desktop/devops/hostd_bk hard = it will creats hard link on the name of hard
+************************************************
+ls -of = open files
+Scp it is called secure copy it is used to copy the files or dir from one server to another
+ssh is used to connet the server. It uses port 22
+ssh username@ipaddress
+ssh -l file.pem user@ipaddress
+
+scp -i file.pem ec2-user@ipaddress :/home/ec2-user/filename = copy the pem file one server to another
+scp filename destination@ip:/tmp/filename
+
+scp –p = with permissions
+scp –r = total directory
+
+rsync = it is synchronize while copying data from one server to other server if copy is stopped in between once the sys is back scp will not start copying from the beging but u will use rsync it will start copying from where it is stopped
+
+scp is faster than rsync
+************************************
+ping it is used to check weather server is up and running
+ping google.com
+ping ipaddress
+
+telnet = telnet command is used to create a remote connection with a system over a TCP/IP network
+
+telnet ipaddress = will shows to access are not 
+telnet uses port23 
+
+uptime = Uptime Command In Linux: It is used to find out how long the system is active (running)
+uptime –p = human redable format
+uptime –s = starting time/specific time
+
+netstat = Network statistics network related info
+netstat –l = only listening ports
+netstat –a | more = both listening and non-listening ports
+netstat –lt = only listening tcp ports
+
+Sftp: The SSH File Transfer Protocol (SFTP), also known as the Secure File Transfer Protocol, enables secure file transfer capabilities between networked hosts
+
+sftp remote_username@server_ip_or_hostname
+
+How to find the files with particular user in unix
+find directory-location -group {group-name} -name {file-name}
+
+how to find the empty and non empty files in unix
+find -L /home/peter -maxdepth 1  -type f -size 0
+**************************************************************
+
+maxdepth: find / -maxdepth 3 -name passwd = Find the passwd file under root and two level down 
+mindepth: find / -mindepth 3 -maxdepth 5 -name passwd = Find the password file between sub-directory level 2 and 4
+***************************************************
+df –h = disk memory
+sort filename
+traceroute google.com
+nslook up google.com
+logout
